@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import red from '@material-ui/core/colors/red';
@@ -13,14 +14,14 @@ const theme = createMuiTheme({
     },
   });
 
-export default function FmApp({ Component, pageProps }) {
+export default function FmApp(props) {
+    const { Component, pageProps } = props;
     React.useEffect(() => {
-        // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side');
-        if (jssStyles) {
+        if (jssStyles && jssStyles.parentNode) {
           jssStyles.parentElement.removeChild(jssStyles);
         }
-      }, []);
+    }, []);
     return (
         <React.Fragment>
             <ThemeProvider theme={theme}>
@@ -30,3 +31,8 @@ export default function FmApp({ Component, pageProps }) {
         </React.Fragment>
     );
 }
+
+FmApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};

@@ -22,15 +22,16 @@ export default function CardList(props) {
 
   return (
     <div className={classes.root}>
-        <Typography variant="h2" gutterBottom>
+        <Typography variant="h3" gutterBottom>
             {props.title}
         </Typography>
         <Grid container spacing={3}>
             {props.items.map(
                 (item, index) =>
-                    <Grid item xs={12} sm={3}>
-                        <CustomCard item={item}/>
-                    </Grid>
+                    (item && item.mbid || item.artist && item.artist.mbid) &&
+                      <Grid item xs={12} sm={3} key={index}>
+                          <CustomCard item={item}/>
+                      </Grid>
                 )
             }
         </Grid>

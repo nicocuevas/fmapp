@@ -1,8 +1,11 @@
 import { getTopAlbums, getTopArtists } from '../services/tag';
-import AppLayout from '../layouts/AppLayout'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import CardList from '../components/CardList';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
+import CardList from '../components/CardList';
+import AppLayout from '../layouts/AppLayout'
+
 
 
 
@@ -21,19 +24,20 @@ function IndexPage(props) {
 
   return (
     <AppLayout title="Home | Explore Top Music">
-      <div className={classes.root}>
-        
-        {props.artists && props.artists.items ? (
-          <CardList items={props.artists.items} title="Top Artists"/>
-        ) : (
-          <Skeleton variant="rect" width={210} height={118} />
-        )}
-        {props.albums && props.albums.items ? (
-          <CardList items={props.albums.items} title="Top Albums"/>
-        ) : (
-          <Skeleton variant="rect" width={210} height={118} />
-        )}
-      </div>
+      <Container>
+        <div className={classes.root}>
+          {props.artists && props.artists.items ? (
+            <CardList items={props.artists.items} title={`Top ${props.word} Artists`}/>
+          ) : (
+            <Skeleton variant="rect" width={210} height={118} />
+          )}
+          {props.albums && props.albums.items ? (
+            <CardList items={props.albums.items} title={`Top ${props.word} Albums`}/>
+          ) : (
+            <Skeleton variant="rect" width={210} height={118} />
+          )}
+        </div>
+      </Container>
     </AppLayout>
   );
 }
@@ -41,9 +45,10 @@ function IndexPage(props) {
 IndexPage.getInitialProps = async (ctx) => {
   const words = ['trap', 'rock', 'usa', 'japan', 'korea', 'argentina', 'rap']
   const ranNum = Math.floor(Math.random()*words.length)
-  const topAlbums = await getTopAlbums(words[ranNum])
-  const topArtists = await getTopArtists(words[ranNum])
-  return { albums: topAlbums, artists: topArtists }
+  const selectedWord = words[ranNum]
+  const topAlbums = await getTopAlbums(selectedWord)
+  const topArtists = await getTopArtists(selectedWord)
+  return { albums: topAlbums, artists: topArtists, word: selectedWord }
 }
 
 export default IndexPage

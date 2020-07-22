@@ -2,15 +2,15 @@
 import axios from 'axios';
 
 
-const baseUrl = `${process.env.FM_API_URL}`
+const baseUrl = `${process.env.NEXT_PUBLIC_FM_API_URL}`
 
 export const getTopAlbums =  async (tag='') => {
   const payload = {
     method: 'tag.getTopAlbums',
-    api_key: process.env.FM_API_KEY,
+    api_key: process.env.NEXT_PUBLIC_FM_API_KEY,
     format: 'json',
     tag: tag,
-    limit: 10
+    limit: 30
   }
   try {
     const res = await axios.get(baseUrl, {params: payload})
@@ -25,10 +25,10 @@ export const getTopAlbums =  async (tag='') => {
 export const getTopArtists =  async (tag='') => {
     const payload = {
         method: 'tag.getTopArtists',
-        api_key: process.env.FM_API_KEY,
+        api_key: process.env.NEXT_PUBLIC_FM_API_KEY,
         format: 'json',
         tag: tag,
-        limit: 10
+        limit: 30
     }
     try {
         const res = await axios.get(baseUrl, {params: payload})

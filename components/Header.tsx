@@ -33,7 +33,7 @@ export default function SearchAppBar() {
     <AppBar position="static" elevation={0}>
             <Toolbar>
                 <Box>
-                    <img src="logo_static.png" />
+                    <img src="/logo_static.png" />
                 </Box>
                 <Box className={classes.links}>
                     {

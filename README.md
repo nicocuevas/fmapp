@@ -27,7 +27,7 @@ yarn dev
 Open [http://localhost:9001](http://localhost:9001) with your browser to see the result.
 
 ## DEMO
-[![FMAPP Site](https://fmapp.vercel.app/)]
+[FMAPP Site](https://fmapp.vercel.app/)
 
 
 ## Deploy on Vercel

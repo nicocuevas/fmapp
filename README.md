@@ -11,9 +11,9 @@ yarn install
 Create .env.local in document root, and add the following environment variables:
 
 ```bash
-FM_API_KEY=
+NEXT_PUBLIC_FM_API_KEY=
 FM_API_SECRET=
-FM_API_URL=http://ws.audioscrobbler.com/2.0/
+NEXT_PUBLIC_FM_API_URL=http://ws.audioscrobbler.com/2.0/
 ```
 
 Run the development server:
